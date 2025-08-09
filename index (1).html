@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗夜精灵香薰 | 探索七脉轮力量与今日运势</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9333ea', // 深紫色 - 主色调
+                        secondary: '#1e293b', // 深蓝灰色 - 辅助色
+                        accent: '#f97316', // 橙色 - 强调色
+                        dark: '#0f172a', // 近黑色 - 背景色
+                        light: '#f8fafc', // 浅色 - 文本色
+                        chakra1: '#fde68a', // 海底轮 - 红色/橙色
+                        chakra2: '#c084fc', // 脐轮 - 橙色/黄色
+                        chakra3: '#818cf8', // 太阳神经丛 - 黄色
+                        chakra4: '#60a5fa', // 心轮 - 绿色
+                        chakra5: '#4ade80', // 喉轮 - 蓝色
+                        chakra6: '#fbbf24', // 眉心轮 - 靛蓝色
+                        chakra7: '#ef4444', // 顶轮 - 紫色/白色
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .bg-glass {
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(8px);
+            }
+            .chakra-glow-1 {
+                box-shadow: 0 0 15px rgba(253, 230, 138, 0.6);
+            }
+            .chakra-glow-2 {
+                box-shadow: 0 0 15px rgba(192, 132, 252, 0.6);
+            }
+            .chakra-glow-3 {
+                box-shadow: 0 0 15px rgba(129, 140, 248, 0.6);
+            }
+            .chakra-glow-4 {
+                box-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
+            }
+            .chakra-glow-5 {
+                box-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+            }
+            .chakra-glow-6 {
+                box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+            }
+            .chakra-glow-7 {
+                box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+            }
+            .transition-custom {
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .stars-bg {
+                background-image: 
+                    radial-gradient(circle, #ffffff 1px, transparent 1px),
+                    radial-gradient(circle, #ffffff 1px, transparent 1px);
+                background-size: 50px 50px;
+                background-position: 0 0, 25px 25px;
+                background-color: #0f172a;
+                background-attachment: fixed;
+                opacity: 0.2;
+            }
+        }
+    </style>
+    
+    <!-- 字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-light min-h-screen font-sans">
+    <!-- 星星背景 -->
+    <div class="fixed inset-0 stars-bg z-0"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-glass shadow-sm transition-custom">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <i class="fa fa-moon-o text-primary text-2xl"></i>
+                <span class="font-serif font-semibold text-xl text-light">暗夜精灵香薰</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#fortune" class="text-light/80 hover:text-primary transition-custom">今日运势</a>
+                <a href="#chakras" class="text-light/80 hover:text-primary transition-custom">七脉轮精油</a>
+                <a href="#personality" class="text-light/80 hover:text-primary transition-custom">性格分析</a>
+                <a href="#products" class="text-light/80 hover:text-primary transition-custom">产品系列</a>
+            </div>
+            <button class="md:hidden text-primary text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 (默认隐藏) -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-dark transform translate-x-full transition-custom md:hidden">
+        <div class="p-4 flex justify-end">
+            <button id="close-menu" class="text-primary text-2xl">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-6 mt-16 text-lg">
+            <a href="#fortune" class="text-light/80 hover:text-primary transition-custom">今日运势</a>
+            <a href="#chakras" class="text-light/80 hover:text-primary transition-custom">七脉轮精油</a>
+            <a href="#personality" class="text-light/80 hover:text-primary transition-custom">性格分析</a>
+            <a href="#products" class="text-light/80 hover:text-primary transition-custom">产品系列</a>
+        </div>
+    </div>
+
+    <!-- 英雄区域 -->
+    <header class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-dark z-0"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="font-serif text-[clamp(2.5rem,5vw,4rem)] font-semibold text-light leading-tight text-shadow mb-6">
+                    探索暗夜中的<br><span class="text-primary">神秘能量与芬芳</span>
+                </h1>
+                <p class="text-lg md:text-xl text-light/80 mb-8">
+                    结合星座运势与七脉轮能量，发现专属于你的暗夜香氛
+                </p>
+                <button id="start-btn" class="bg-primary hover:bg-primary/90 text-white font-medium px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-custom">
+                    开始探索 <i class="fa fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-dark to-transparent"></div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 relative z-10">
+        <!-- 今日运势部分 -->
+        <section id="fortune" class="mb-20 opacity-0 transform translate-y-8 transition-custom">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-semibold text-light mb-4">今日运势</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="bg-secondary rounded-2xl shadow-xl p-6 md:p-10 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="bg-dark rounded-xl p-6 text-center flex-shrink-0">
+                        <div id="fortune-date" class="text-primary font-medium mb-2">2023年6月15日 星期四</div>
+                        <div id="zodiac-sign" class="mb-3">
+                            <img src="https://picsum.photos/seed/leo/100/100" alt="狮子座" class="w-20 h-20 mx-auto rounded-full border-2 border-primary">
+                            <div class="mt-2 font-medium">狮子座</div>
+                        </div>
+                        <div id="fortune-rating" class="text-light font-semibold">运势指数: 85/100</div>
+                    </div>
+                    
+                    <div class="flex-1">
+                        <h3 class="font-serif text-xl text-primary mb-4">今日整体运势</h3>
+                        <p id="fortune-description" class="text-light/80 mb-6">
+                            今天你的能量充沛，适合开展新计划和社交活动。在人际关系中会有新的突破，可能会遇到志同道合的伙伴。财运稳定，但需谨慎投资。健康方面要注意平衡工作与休息。
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-dark/50 p-4 rounded-lg">
+                                <div class="font-medium mb-1">爱情运</div>
+                                <div class="flex items-center">
+                                    <i class="fa fa-heart text-chakra6 mr-2"></i>
+                                    <span>良好，有机会遇到新恋情</span>
+                                </div>
+                            </div>
+                            <div class="bg-dark/50 p-4 rounded-lg">
+                                <div class="font-medium mb-1">事业运</div>
+                                <div class="flex items-center">
+                                    <i class="fa fa-briefcase text-primary mr-2"></i>
+                                    <span>顺利，适合开展新项目</span>
+                                </div>
+                            </div>
+                            <div class="bg-dark/50 p-4 rounded-lg">
+                                <div class="font-medium mb-1">财运</div>
+                                <div class="flex items-center">
+                                    <i class="fa fa-money text-chakra1 mr-2"></i>
+                                    <span>中上，有小惊喜</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 七脉轮与精油部分 -->
+        <section id="chakras" class="mb-20 opacity-0 transform translate-y-8 transition-custom">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-semibold text-light mb-4">七脉轮与对应精油</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+                <p class="mt-4 text-light/70 max-w-2xl mx-auto">
+                    每个脉轮都对应着特定的能量和情绪，暗夜精灵精油帮助你平衡能量，焕发内在光芒
+                </p>
+            </div>
+            
+            <!-- 脉轮图解 -->
+            <div class="hidden lg:block max-w-3xl mx-auto mb-16">
+                <div class="relative">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-chakra1 via-chakra4 to-chakra7 transform -translate-x-1/2"></div>
+                    <div class="space-y-16">
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra7 mb-2">顶轮</h3>
+                                <p class="text-light/70">连接宇宙意识，代表智慧与灵性</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra7 chakra-glow-7 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：檀香木</h4>
+                                <p class="text-light/70 text-sm">提升灵性意识，促进冥想与内心平静</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra6 mb-2">眉心轮</h3>
+                                <p class="text-light/70">代表直觉与洞察力，位于两眉之间</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra6 chakra-glow-6 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：薰衣草</h4>
+                                <p class="text-light/70 text-sm">增强直觉，缓解焦虑，提升专注力</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra5 mb-2">喉轮</h3>
+                                <p class="text-light/70">代表沟通与表达，位于喉咙部位</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra5 chakra-glow-5 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：薄荷</h4>
+                                <p class="text-light/70 text-sm">促进清晰表达，增强沟通能力</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra4 mb-2">心轮</h3>
+                                <p class="text-light/70">代表爱与慈悲，位于心脏部位</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra4 chakra-glow-4 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：玫瑰</h4>
+                                <p class="text-light/70 text-sm">开启爱心，促进情感平衡与和谐</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra3 mb-2">太阳神经丛</h3>
+                                <p class="text-light/70">代表自信与力量，位于腹部</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra3 chakra-glow-3 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：佛手柑</h4>
+                                <p class="text-light/70 text-sm">增强自信，提升个人力量与意志力</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra2 mb-2">脐轮</h3>
+                                <p class="text-light/70">代表创造力与情感，位于肚脐部位</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra2 chakra-glow-2 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：依兰</h4>
+                                <p class="text-light/70 text-sm">激发创造力，平衡情感与欲望</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="w-5/12 text-right pr-8">
+                                <h3 class="font-serif text-xl text-chakra1 mb-2">海底轮</h3>
+                                <p class="text-light/70">代表生存与安全感，位于脊柱底部</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-chakra1 chakra-glow-1 z-10"></div>
+                            <div class="w-5/12 pl-8">
+                                <h4 class="text-primary font-medium mb-1">推荐精油：雪松</h4>
+                                <p class="text-light/70 text-sm">增强安全感，稳定能量基础</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 移动端脉轮列表 -->
+            <div class="lg:hidden grid grid-cols-1 gap-6">
+                <!-- 顶轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra7 chakra-glow-7 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra7 mb-1">顶轮</h3>
+                        <p class="text-light/70 text-sm mb-2">连接宇宙意识，代表智慧与灵性</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：檀香木</span>
+                            <p class="text-light/60 text-xs">提升灵性意识，促进冥想与内心平静</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 眉心轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra6 chakra-glow-6 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra6 mb-1">眉心轮</h3>
+                        <p class="text-light/70 text-sm mb-2">代表直觉与洞察力，位于两眉之间</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：薰衣草</span>
+                            <p class="text-light/60 text-xs">增强直觉，缓解焦虑，提升专注力</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 喉轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra5 chakra-glow-5 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra5 mb-1">喉轮</h3>
+                        <p class="text-light/70 text-sm mb-2">代表沟通与表达，位于喉咙部位</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：薄荷</span>
+                            <p class="text-light/60 text-xs">促进清晰表达，增强沟通能力</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 心轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra4 chakra-glow-4 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra4 mb-1">心轮</h3>
+                        <p class="text-light/70 text-sm mb-2">代表爱与慈悲，位于心脏部位</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：玫瑰</span>
+                            <p class="text-light/60 text-xs">开启爱心，促进情感平衡与和谐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 太阳神经丛 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra3 chakra-glow-3 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra3 mb-1">太阳神经丛</h3>
+                        <p class="text-light/70 text-sm mb-2">代表自信与力量，位于腹部</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：佛手柑</span>
+                            <p class="text-light/60 text-xs">增强自信，提升个人力量与意志力</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 脐轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra2 chakra-glow-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra2 mb-1">脐轮</h3>
+                        <p class="text-light/70 text-sm mb-2">代表创造力与情感，位于肚脐部位</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：依兰</span>
+                            <p class="text-light/60 text-xs">激发创造力，平衡情感与欲望</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 海底轮 -->
+                <div class="bg-secondary rounded-xl p-6 flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full bg-chakra1 chakra-glow-1 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-serif text-xl text-chakra1 mb-1">海底轮</h3>
+                        <p class="text-light/70 text-sm mb-2">代表生存与安全感，位于脊柱底部</p>
+                        <div>
+                            <span class="text-primary text-sm font-medium">推荐精油：雪松</span>
+                            <p class="text-light/60 text-xs">增强安全感，稳定能量基础</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 性格分析部分 -->
+        <section id="personality" class="mb-20 opacity-0 transform translate-y-8 transition-custom">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-semibold text-light mb-4">你的能量性格分析</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+                <p class="mt-4 text-light/70 max-w-2xl mx-auto">基于你的运势与脉轮能量，解析你的独特性格特质</p>
+            </div>
+            
+            <div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 md:p-10 flex flex-col justify-center">
+                        <h3 class="font-serif text-2xl text-primary mb-6">你是一位暗夜中的平衡者</h3>
+                        <p class="text-light/80 mb-6">
+                            你的能量场显示出强大的内在力量与灵性连接。你既能够脚踏实地，又拥有丰富的想象力和直觉。在人际关系中，你既独立又富有同情心，能够理解他人的感受同时保持自我。
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-light mb-1">直觉敏锐</h4>
+                                    <p class="text-light/70 text-sm">你拥有强大的直觉能力，常常能感知到他人忽略的信息和能量。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-light mb-1">内在平衡</h4>
+                                    <p class="text-light/70 text-sm">你能够在物质世界和精神世界之间找到平衡，既务实又富有灵性。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary/20 p-2 rounded-full mr-4 mt-1">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-light mb-1">疗愈能力</h4>
+                                    <p class="text-light/70 text-sm">你拥有自然的疗愈能量，能够安慰他人并帮助周围的人找到平静。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="self-start bg-primary hover:bg-primary/90 text-white font-medium px-6 py-2 rounded-full shadow hover:shadow-md transform hover:-translate-y-1 transition-custom">
+                            查看完整能量分析
+                        </button>
+                    </div>
+                    
+                    <div class="bg-dark p-8 md:p-10 flex items-center justify-center">
+                        <div class="w-full max-w-md">
+                            <div class="relative">
+                                <div class="aspect-square rounded-full bg-secondary shadow-lg overflow-hidden border-4 border-primary mx-auto mb-6">
+                                    <img src="https://picsum.photos/seed/energy/400/400" alt="能量性格图示" class="w-full h-full object-cover mix-blend-lighten">
+                                </div>
+                                <div class="absolute -bottom-3 right-1/4 bg-accent text-dark text-sm font-medium px-4 py-1 rounded-full shadow">
+                                    能量匹配度: 92%
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>灵性意识</span>
+                                        <span>88%</span>
+                                    </div>
+                                    <div class="w-full bg-dark/50 rounded-full h-2">
+                                        <div class="bg-chakra7 h-2 rounded-full" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>情感平衡</span>
+                                        <span>79%</span>
+                                    </div>
+                                    <div class="w-full bg-dark/50 rounded-full h-2">
+                                        <div class="bg-chakra4 h-2 rounded-full" style="width: 79%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>创造力</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="w-full bg-dark/50 rounded-full h-2">
+                                        <div class="bg-chakra2 h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>安全感</span>
+                                        <span>72%</span>
+                                    </div>
+                                    <div class="w-full bg-dark/50 rounded-full h-2">
+                                        <div class="bg-chakra1 h-2 rounded-full" style="width: 72%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品系列部分 -->
+        <section id="products" class="mb-16 opacity-0 transform translate-y-8 transition-custom">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-semibold text-light mb-4">暗夜精灵产品系列</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+                <p class="mt-4 text-light/70 max-w-2xl mx-auto">根据你的能量特质，这些产品将最适合你</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 产品卡片 1 -->
+                <div class="bg-secondary rounded-xl overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-custom group">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/elixir1/400/500" alt="顶轮平衡精油" class="w-full h-64 object-cover group-hover:scale-105 transition-custom">
+                        <div class="absolute top-3 right-3 bg-chakra7/80 text-dark text-xs font-medium px-2 py-1 rounded">
+                            顶轮
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-light mb-1">灵性之光精油</h3>
+                        <p class="text-primary font-semibold">¥368</p>
+                        <div class="mt-3 flex justify-between items-center">
+                            <div class="flex text-chakra6 text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span class="text-light/60 ml-1">(89)</span>
+                            </div>
+                            <a href="https://anyejingling.tmall.com/" target="_blank" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-custom">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 产品卡片 2 -->
+                <div class="bg-secondary rounded-xl overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-custom group">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/elixir2/400/500" alt="心轮平衡精油" class="w-full h-64 object-cover group-hover:scale-105 transition-custom">
+                        <div class="absolute top-3 right-3 bg-chakra4/80 text-dark text-xs font-medium px-2 py-1 rounded">
+                            心轮
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-light mb-1">爱与和谐精油</h3>
+                        <p class="text-primary font-semibold">¥328</p>
+                        <div class="mt-3 flex justify-between items-center">
+                            <div class="flex text-chakra6 text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span class="text-light/60 ml-1">(64)</span>
+                            </div>
+                            <a href="https://anyejingling.tmall.com/" target="_blank" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-custom">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 产品卡片 3 -->
+                <div class="bg-secondary rounded-xl overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-custom group">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/elixir3/400/500" alt="七脉轮套装" class="w-full h-64 object-cover group-hover:scale-105 transition-custom">
+                        <div class="absolute top-3 right-3 bg-accent text-dark text-xs font-medium px-2 py-1 rounded">
+                            畅销
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-light mb-1">七脉轮平衡套装</h3>
+                        <p class="text-primary font-semibold">¥1680</p>
+                        <div class="mt-3 flex justify-between items-center">
+                            <div class="flex text-chakra6 text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <span class="text-light/60 ml-1">(127)</span>
+                            </div>
+                            <a href="https://anyejingling.tmall.com/" target="_blank" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-custom">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 产品卡片 4 -->
+                <div class="bg-secondary rounded-xl overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-custom group">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/elixir4/400/500" alt="冥想香薰蜡烛" class="w-full h-64 object-cover group-hover:scale-105 transition-custom">
+                        <div class="absolute top-3 right-3 bg-chakra6/80 text-dark text-xs font-medium px-2 py-1 rounded">
+                            眉心轮
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-light mb-1">直觉之光香薰蜡烛</h3>
+                        <p class="text-primary font-semibold">¥258</p>
+                        <div class="mt-3 flex justify-between items-center">
+                            <div class="flex text-chakra6 text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span class="text-light/60 ml-1">(53)</span>
+                            </div>
+                            <a href="https://anyejingling.tmall.com/" target="_blank" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-custom">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系与订阅区域 -->
+        <section class="bg-secondary/50 rounded-2xl p-8 md:p-12 mb-16 opacity-0 transform translate-y-8 transition-custom">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-serif text-[clamp(1.5rem,3vw,2rem)] font-semibold text-light mb-4">连接暗夜精灵</h2>
+                <p class="text-light/70 mb-8">订阅我们的能量通讯，或通过以下方式联系我们</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-dark/50 p-6 rounded-xl">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="text-xl font-medium mb-2">官方店铺</h3>
+                        <p class="text-light/70 mb-4">浏览完整产品系列，享受专属优惠</p>
+                        <a href="https://anyejingling.tmall.com/" target="_blank" class="inline-flex items-center text-primary hover:underline">
+                            访问天猫店铺 <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-dark/50 p-6 rounded-xl">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-weixin"></i>
+                        </div>
+                        <h3 class="text-xl font-medium mb-2">微信咨询</h3>
+                        <p class="text-light/70 mb-4">添加微信，获取一对一能量咨询</p>
+                        <div class="flex items-center justify-center gap-2 text-light/90">
+                            <i class="fa fa-qrcode text-xl"></i>
+                            <span>微信号: fannyfan555</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                    <input type="email" placeholder="你的邮箱地址" class="flex-1 px-4 py-3 rounded-full bg-dark/50 border border-primary/30 text-light focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-full shadow hover:shadow-md transform hover:-translate-y-1 transition-custom whitespace-nowrap">
+                        订阅能量通讯
+                    </button>
+                </form>
+                <p class="text-light/50 text-sm mt-4">我们尊重你的隐私，不会向第三方分享你的信息</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-secondary py-12 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-moon-o text-primary text-2xl"></i>
+                        <span class="font-serif font-semibold text-xl">暗夜精灵香薰</span>
+                    </div>
+                    <p class="text-light/70 mb-4">探索香氛与能量的神秘关联，唤醒内在的暗夜精灵。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-light/70 hover:text-primary transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-light/70 hover:text-primary transition-custom">
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                        <a href="#" class="text-light/70 hover:text-primary transition-custom">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-light/70 hover:text-primary transition-custom">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#fortune" class="text-light/70 hover:text-primary transition-custom">今日运势</a></li>
+                        <li><a href="#chakras" class="text-light/70 hover:text-primary transition-custom">七脉轮精油</a></li>
+                        <li><a href="#personality" class="text-light/70 hover:text-primary transition-custom">能量性格</a></li>
+                        <li><a href="#products" class="text-light/70 hover:text-primary transition-custom">产品系列</a></li>
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-4">产品系列</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">脉轮平衡系列</a></li>
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">冥想香薰系列</a></li>
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">能量水晶套装</a></li>
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">暗夜仪式套装</a></li>
+                        <li><a href="#" class="text-light/70 hover:text-primary transition-custom">限量珍藏系列</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-light/70">上海市静安区南京西路1266号</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-light/70">400-888-9999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-light/70">contact@anyejingling.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-weixin text-primary mr-3"></i>
+                            <span class="text-light/70">fannyfan555</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-shopping-cart text-primary mr-3"></i>
+                            <a href="https://anyejingling.tmall.com/" target="_blank" class="text-light/70 hover:text-primary transition-custom">
+                                暗夜精灵天猫店
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-light/10 pt-8 text-center text-light/50 text-sm">
+                <p>&copy; 2023 暗夜精灵香薰品牌 版权所有 | 沪ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-custom hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 设置当前日期
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('fortune-date').textContent = now.toLocaleDateString('zh-CN', options);
+            
+            // 滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // 移动端菜单
+            const menuBtn = document.querySelector('.fa-bars').parentElement;
+            const closeBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                });
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 开始探索按钮
+            document.getElementById('start-btn').addEventListener('click', () => {
+                document.getElementById('fortune').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            // 返回顶部按钮
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 导航栏滚动效果
+            const nav = document.querySelector('nav');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                
+                if (scrollTop > 100) {
+                    nav.classList.add('py-2', 'shadow');
+                    nav.classList.remove('py-3');
+                } else {
+                    nav.classList.add('py-3');
+                    nav.classList.remove('py-2', 'shadow');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
+</body>
+</html>
